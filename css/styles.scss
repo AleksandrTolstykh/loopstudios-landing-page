@@ -1,0 +1,217 @@
+$white-color: hsl(0, 0%, 100%);
+$black-color: hsl(0, 0%, 0%);
+$gray-color: hsl(0, 0%, 55%);
+$dark-gray-color: hsl(0, 0%, 41%);
+$mobile-display-size: 768px;
+
+@mixin font($family, $weight, $size) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+}
+
+@mixin background($image-name, $size) {
+  background-image: url("../images/desktop/" + $image-name);
+  background-repeat: no-repeat;
+  background-size: $size;
+
+  @media (max-width: $mobile-display-size) {
+    background-image: url("../images/mobile/" + $image-name);
+  }
+}
+
+@mixin toggler-image($image-url) {
+  background-image: url($image-url);
+  background-repeat: no-repeat;
+  background-size: auto;
+
+  width: 20px;
+  height: 20px;
+}
+
+@mixin body-image($image-name) {
+  @include background($image-name, auto);
+
+  height: 450px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 50%;
+  }
+
+  @media (max-width: $mobile-display-size) {
+    height: 240px;
+  }
+}
+
+body {
+  @include background("image-hero.jpg", auto);
+}
+
+#header {
+  height: 650px;
+
+  @media (max-width: $mobile-display-size) {
+    height: 1300px;
+  }
+
+  .collapse {
+    @media (max-width: $mobile-display-size) {
+      background-color: $black-color;
+    }
+  }
+
+  .navbar-toggler {
+    &:focus, &:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    &[aria-expanded="false"] {
+      @include toggler-image("../images/icon-hamburger.svg");
+    }
+
+    &[aria-expanded="true"] {
+      @include toggler-image("../images/icon-close.svg");
+    }
+  }
+
+  .nav-link {
+    @include font("Alata", 400, 1rem);
+
+    color: $white-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .title {
+    border: 1px solid;
+    border-color: $white-color;
+  }
+
+  .title-container {
+    @include font("Josefin Sans", 300, 60px);
+
+    color: $white-color;
+  }
+}
+
+#body {
+  .image {
+    @include background("image-interactive.jpg", cover);
+
+    background-position: left;
+    height: 500px;
+
+    @media (max-width: $mobile-display-size) {
+      background-size: contain;
+      width: 100%;
+    }
+  }
+
+  .title {
+    background-color: $white-color;
+    left: 60%;
+    bottom: 300px;
+    width: 550px;
+
+    @media (max-width: $mobile-display-size) {
+      position: static!important;
+      width: 100%;
+    }
+  }
+
+  h1 {
+    @include font("Josefin Sans", 300, 2rem);
+  }
+
+  p {
+    @include font("Alata", 400, 1rem);
+
+    color: $gray-color;
+  }
+
+  .btn {
+    border: 1px solid;
+
+    &:hover {
+      background-color: $black-color;
+      color: $white-color;
+    }
+  }
+
+  h2 {
+    @include font("Josefin Sans", 300, 2rem);
+
+    color: $white-color;
+  }
+
+  .deep-earth {
+    @include body-image("image-deep-earth.jpg");
+  }
+
+  .night-arcade {
+    @include body-image("image-night-arcade.jpg");
+  }
+
+  .soccer-team-vr {
+    @include body-image("image-soccer-team.jpg");
+  }
+
+  .the-grid {
+    @include body-image("image-grid.jpg");
+  }
+
+  .from-up-above-vr {
+    @include body-image("image-from-above.jpg");
+  }
+
+  .pocket-borealis {
+    @include body-image("image-pocket-borealis.jpg");
+  }
+
+  .the-curiosity {
+    @include body-image("image-curiosity.jpg");
+  }
+
+  .make-it-fisheye {
+    @include body-image("image-fisheye.jpg");
+  }
+}
+
+#footer {
+  @include font("Alata", 400, 1rem);
+
+  background-color: $black-color;
+
+  .icon {
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid $white-color;
+    }
+  }
+
+  .link {
+    color: $white-color;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    color: $dark-gray-color;
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
